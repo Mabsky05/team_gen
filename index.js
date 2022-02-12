@@ -1,6 +1,14 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 
+class Employee {
+    constructor(em_name, id, email) {
+      this.em_name = em_name;
+      this.id = id;
+      this.email = email;
+    }
+}
+
 const promptUser = () => {
     return inquirer.prompt([
         {
@@ -24,9 +32,7 @@ const promptUser = () => {
 const create = () => {
     promptUser()
     .then (function (answers) {
-        let empys = new Employee(answers.Em_name, answers.id, answers.Email)
-        console.log(empys); 
-        console.log(answers.Em_name);
+        let  = new Employee(answers.Em_name, answers.id, answers.Email)
     }) 
     .then ()
     .catch ()   
@@ -34,12 +40,10 @@ const create = () => {
 
 create()
 
-class Employee {
-    constructor(em_name, id, email) {
-      this.em_name = em_name;
-      this.id = id;
-      this.email = email;
-    }
+//access data as string, make html file
+const tohtml = () => {
+    create()
+    .then(data)
 }
 
 
