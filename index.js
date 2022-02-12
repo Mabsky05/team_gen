@@ -19,6 +19,7 @@ class Manager extends Employee {
 
 class Engineer extends Employee {
     constructor(em_name, id, email, Github) {
+        super()
       this.Github = Github
     }
 }
@@ -74,43 +75,62 @@ const promptManager = () => {
     ])
 }
 
-const promptOption1 = () => {
+const promptAddEng = (answer) => {
     return inquirer.prompt([
         {
-            type: 'input',
+            type: 'list',
             name: 'Option1',
-            message: "Add Engineer:",
+            message: "Add Engineer?",
+            choices: ["Yes", "No"],
+            validate: selected => {
+                if (selected == "Yes" ) {
+                    promptEngineer()
+                }
+
+            }
         },
     ])
 }
+
+const promptEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'Em_name',
+            message: "Input Engineer Name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Input Engineer ID:",
+        },
+        {
+            type: 'input',
+            name: 'Email',
+            message: "Input Engineer Email:",
+        },
+        {
+            type: 'input',
+            name: 'OfficeNumber',
+            message: "Input Engineer Office Number:",
+        },
+    ])
+}
+
 
 const createEmployee = () => {
     promptManager()
     .then (function (answers) {
         let  = new Manager(answers.Em_name, answers.id, answers.Email)
         let coco = blankhtml + answers.Em_name
-        fs.writeFileSync("sample.md", coco)   
+        fs.writeFileSync("sample.md", coco)    
     }) 
-    .then (promptManager) 
-    .then (function (answers) {
-        let = new Manager (answers.Em_name, answers.id, answers.Email, answers.OfficeNumber)
-        let cocox = blankhtml + answers.Em_name
-        fs.appendFileSync("sample.md", cocox)  
-    })
+    .then (promptAddEng)
+ 
     .then ()
     .catch ()   
-};
+}
 
-// const createManager = () => {
-//     promptManager()
-//     .then (function (answers) {
-//         let  = new Manager(answers.Em_name, answers.id, answers.Email)
-//         let coco = blankhtml + answers.Em_name
-//         fs.writeFileSync("sample.md", coco)   
-//     }) 
-//     .then ()
-//     .catch ()   
-// };
 
 createEmployee()
 
