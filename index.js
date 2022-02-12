@@ -1,3 +1,4 @@
+const blankhtml = "<!DOCTYPE html>"
 const inquirer = require('inquirer')
 const fs = require('fs')
 
@@ -9,7 +10,26 @@ class Employee {
     }
 }
 
-const promptUser = () => {
+class Manager extends Employee {
+    constructor(em_name, id, email, OfficeNumber) {
+        super(em_name, id, email,);
+        this.OfficeNumber = OfficeNumber
+    }
+}
+
+class Engineer extends Employee {
+    constructor(em_name, id, email, Github) {
+      this.Github = Github
+    }
+}
+
+class Intern extends Employee {
+    constructor(em_name, id, email, school) {
+      this.school = school
+    }
+}
+
+const promptEmployee = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -29,22 +49,83 @@ const promptUser = () => {
     ])
 }
 
-const create = () => {
-    promptUser()
+const promptManager = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'Em_name',
+            message: "Input Manager Name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Input Manager ID:",
+        },
+        {
+            type: 'input',
+            name: 'Email',
+            message: "Input Manager Email:",
+        },
+        {
+            type: 'input',
+            name: 'OfficeNumber',
+            message: "Input Manager Office Number:",
+        },
+    ])
+}
+
+const promptOption1 = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'Option1',
+            message: "Add Engineer:",
+        },
+    ])
+}
+
+const createEmployee = () => {
+    promptManager()
     .then (function (answers) {
-        let  = new Employee(answers.Em_name, answers.id, answers.Email)
+        let  = new Manager(answers.Em_name, answers.id, answers.Email)
+        let coco = blankhtml + answers.Em_name
+        fs.writeFileSync("sample.md", coco)   
     }) 
+    .then (promptManager) 
+    .then (function (answers) {
+        let = new Manager (answers.Em_name, answers.id, answers.Email, answers.OfficeNumber)
+        let cocox = blankhtml + answers.Em_name
+        fs.appendFileSync("sample.md", cocox)  
+    })
     .then ()
     .catch ()   
 };
 
-create()
+// const createManager = () => {
+//     promptManager()
+//     .then (function (answers) {
+//         let  = new Manager(answers.Em_name, answers.id, answers.Email)
+//         let coco = blankhtml + answers.Em_name
+//         fs.writeFileSync("sample.md", coco)   
+//     }) 
+//     .then ()
+//     .catch ()   
+// };
+
+createEmployee()
+
+
 
 //access data as string, make html file
-const tohtml = () => {
-    create()
-    .then(data)
-}
+// const tohtml = () => {
+//     create()
+//     .then((data) => console.log(data)
+//     )}
+
+
+//     create()
+
+// tohtml()
 
 
 //prompt, then store in class, create employees, (prompt if add'l) then build html, test  
