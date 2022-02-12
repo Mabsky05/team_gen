@@ -75,21 +75,36 @@ const promptManager = () => {
     ])
 }
 
-const promptAddEng = (answer) => {
+// const promptAddEng = (answer) => {
+//     return inquirer.prompt([
+//         {
+//             type: 'list',
+//             name: 'Option1',
+//             message: "Add Engineer?",
+//             choices: ["Yes", "No"],
+//             validate: selected => {
+//                 if (selected == "Yes" ) {
+//                     promptEngineer()
+//                 }
+
+//             }
+//         },
+//     ])
+// }
+
+const promptAddEng = () => {
     return inquirer.prompt([
         {
             type: 'list',
             name: 'Option1',
             message: "Add Engineer?",
-            choices: ["Yes", "No"],
-            validate: selected => {
-                if (selected == "Yes" ) {
-                    promptEngineer()
-                }
-
-            }
+            choices: [ "Yes", "No" ],
         },
-    ])
+    ]).then(function (answers) {
+        if (answers.Option1 === "Yes") {
+            return promptEngineer();
+        }
+    });
 }
 
 const promptEngineer = () => {
@@ -114,8 +129,13 @@ const promptEngineer = () => {
             name: 'OfficeNumber',
             message: "Input Engineer Office Number:",
         },
-    ])
+    ]).then (function (answers) {
+        (fs.appendFileSync("sample.md", answers.OfficeNumber))
+    
+    }); 
+
 }
+
 
 
 const createEmployee = () => {
@@ -126,7 +146,6 @@ const createEmployee = () => {
         fs.writeFileSync("sample.md", coco)    
     }) 
     .then (promptAddEng)
- 
     .then ()
     .catch ()   
 }
