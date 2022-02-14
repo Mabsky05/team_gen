@@ -75,22 +75,6 @@ const promptManager = () => {
     ])
 }
 
-// const promptAddEng = (answer) => {
-//     return inquirer.prompt([
-//         {
-//             type: 'list',
-//             name: 'Option1',
-//             message: "Add Engineer?",
-//             choices: ["Yes", "No"],
-//             validate: selected => {
-//                 if (selected == "Yes" ) {
-//                     promptEngineer()
-//                 }
-
-//             }
-//         },
-//     ])
-// }
 
 const promptAddEng = () => {
     return inquirer.prompt([
