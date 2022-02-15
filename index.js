@@ -19,14 +19,15 @@ class Manager extends Employee {
 
 class Engineer extends Employee {
     constructor(em_name, id, email, Github) {
-        super()
-      this.Github = Github
+        super(em_name, id, email);
+        this.Github = Github
     }
 }
 
 class Intern extends Employee {
     constructor(em_name, id, email, school) {
-      this.school = school
+        super(em_name, id, email);
+        this.school = school
     }
 }
 
@@ -110,27 +111,127 @@ const promptEngineer = () => {
         },
         {
             type: 'input',
-            name: 'OfficeNumber',
-            message: "Input Engineer Office Number:",
+            name: 'Github',
+            message: "Input Engineer Github:",
         },
     ]).then (function (answers) {
-        (fs.appendFileSync("sample.md", answers.OfficeNumber))
-    
+        let  = new Engineer (answers.Em_name, answers.id, answers.Email, answers.Github);
+        (fs.appendFileSync("sample.html",         
+        `<div class="col-sm 2nd_column">
+        <div class="card" style="width: 18rem;">
+        <h5 class="list-group list-group-flush">&nbsp The Engineer</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
+                <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
+                <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
+                <li class="list-group-item"><h6>Git</h6>${answers.Github}</li>
+            </ul>
+        </div>
+    </div>`
+        ))
     }); 
-
 }
 
+const promptAddInt = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'Option1',
+            message: "Add Intern?",
+            choices: [ "Yes", "No" ],
+        },
+    ]).then(function (answers) {
+        if (answers.Option1 === "Yes") {
+            return promptIntern();
+        }
+    });
+}
 
+const promptIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'Em_name',
+            message: "Input Intern Name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Input Intern ID:",
+        },
+        {
+            type: 'input',
+            name: 'Email',
+            message: "Input Intern Email:",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Input Intern School:",
+        },
+    ]).then (function (answers) {
+        let  = new Intern(answers.Em_name, answers.id, answers.Email, answers.school);
+        (fs.appendFileSync("sample.html",         
+        `<div class="col-sm 2nd_column">
+        <div class="card" style="width: 18rem;">
+        <h5 class="list-group list-group-flush">&nbsp The Intern</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
+            <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
+            <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
+            <li class="list-group-item"><h6>School</h6>${answers.school}</li>
+          </ul>
+        </div>
+      </div>
+    </div>`
+        ))
+    }); 
+}
 
 const createEmployee = () => {
     promptManager()
     .then (function (answers) {
-        let  = new Manager(answers.Em_name, answers.id, answers.Email)
-        let coco = blankhtml + answers.Em_name
-        fs.writeFileSync("sample.md", coco)    
+        let  = new Manager(answers.Em_name, answers.id, answers.Email, answers.OfficeNumber)
+        fs.writeFileSync("sample.html", 
+`<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+        rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Build Your Team!</title>
+    </head>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">The Team</h1>
+                <p class="lead">Manager + Options: Engineer and/or Intern</p>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+        <div class="row">
+        
+        <div class="col-sm 1st_column">
+            <div class="card" style="width: 18rem;">
+                <h5 class="list-group list-group-flush">&nbsp The Manager</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
+                        <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
+                        <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
+                        <li class="list-group-item"><h6>Office Number</h6>${answers.OfficeNumber}</li>
+                    </ul>
+            </div>
+        </div>`      
+        )    
     }) 
     .then (promptAddEng)
-    .then ()
+    .then (promptAddInt)
     .catch ()   
 }
 
@@ -139,108 +240,3 @@ createEmployee()
 
 
 
-//access data as string, make html file
-// const tohtml = () => {
-//     create()
-//     .then((data) => console.log(data)
-//     )}
-
-
-//     create()
-
-// tohtml()
-
-
-//prompt, then store in class, create employees, (prompt if add'l) then build html, test  
-
-// const miguel = new Employee('miguel', 1, 'miguel@icloud.com');
-// miguel.getName().then(data => {
-//    console.log(data)
-// })
-
-
-/*
-
-const newbie = new Employee()
-
-
-  class Manager {
-    constructor(name, id, email, officeNumber) {
-      this.name = name;
-      this.id = id;
-      this.email = email;
-      this.officeNumber = officeNumber
-    }
-    getname() {
-        //function placeholder
-    }
-    getID() {
-        //function placeholder
-    }
-    getEmail() {
-        //function placeholder
-    }
-    getRole() {
-        return Manager
-    }
-  }
-
-  class Engineer {
-    constructor(name, id, email) {
-      this.name = name;
-      this.id = id;
-      this.email = email;
-      this.github = github;
-    }
-    getname() {
-        //function placeholder
-    }
-    getID() {
-        //function placeholder
-    }
-    getEmail() {
-        //function placeholder
-    }
-    getGithub() {
-        return github
-    }
-    getRole() {
-        return Engineer
-    }
-  }
-
-
-  class Intern {
-    constructor(name, id, email) {
-      this.name = name;
-      this.id = id;
-      this.email = email;
-      this.school = school;
-    }
-    getname() {
-        //function placeholder
-    }
-    getID() {
-        //function placeholder
-    }
-    getEmail() {
-        //function placeholder
-    }
-    getRole() {
-        return Intern
-    }
-  }
-
-
-
- CODE SAMPLES FOR RUNNING INQUIRER
-const miguel = new Employee('miguel', 1, 'miguel@icloud.com');
-miguel.getName().then(data => {
-   console.log(data)
-})
-
-Employee.prototype.getName().then((value) => {
-    console.log(value)
-})
-
-*/
