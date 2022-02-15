@@ -1,7 +1,7 @@
-const blankhtml = "<!DOCTYPE html>"
 const inquirer = require('inquirer')
 const fs = require('fs')
 
+//Class Setup
 class Employee {
     constructor(em_name, id, email) {
       this.em_name = em_name;
@@ -31,6 +31,7 @@ class Intern extends Employee {
     }
 }
 
+//Base (dummy) Code
 const promptEmployee = () => {
     return inquirer.prompt([
         {
@@ -51,6 +52,7 @@ const promptEmployee = () => {
     ])
 }
 
+//Manager Code
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -76,7 +78,7 @@ const promptManager = () => {
     ])
 }
 
-
+//Add Engineer?
 const promptAddEng = () => {
     return inquirer.prompt([
         {
@@ -92,6 +94,7 @@ const promptAddEng = () => {
     });
 }
 
+//Engineer Data
 const promptEngineer = () => {
     return inquirer.prompt([
         {
@@ -123,8 +126,8 @@ const promptEngineer = () => {
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
                 <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
-                <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
-                <li class="list-group-item"><h6>Git</h6><a href="github.com/${answers.Github}" target=_blank>${answers.Github}</a>
+                <li class="list-group-item"><h6>Email</h6><a href="mailto: ${answers.Email}">${answers.Email}</a></li>
+                <li class="list-group-item"><h6>Git</h6><a href="http://github.com/${answers.Github}" target=_blank>${answers.Github}</a>
                 </li>
             </ul>
         </div>
@@ -133,6 +136,7 @@ const promptEngineer = () => {
     }); 
 }
 
+//Add Intern?
 const promptAddInt = () => {
     return inquirer.prompt([
         {
@@ -148,6 +152,7 @@ const promptAddInt = () => {
     });
 }
 
+//Intern Data
 const promptIntern = () => {
     return inquirer.prompt([
         {
@@ -179,7 +184,7 @@ const promptIntern = () => {
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
             <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
-            <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
+            <li class="list-group-item"><h6>Email</h6><a href="mailto: ${answers.Email}">${answers.Email}</a></li>
             <li class="list-group-item"><h6>School</h6>${answers.school}</li>
           </ul>
         </div>
@@ -189,6 +194,7 @@ const promptIntern = () => {
     }); 
 }
 
+//Trigger
 const createEmployee = () => {
     promptManager()
     .then (function (answers) {
@@ -224,7 +230,7 @@ const createEmployee = () => {
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
                         <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
-                        <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
+                        <li class="list-group-item"><h6>Email</h6><a href="mailto: ${answers.Email}">${answers.Email}</a></li>
                         <li class="list-group-item"><h6>Office Number</h6>${answers.OfficeNumber}</li>
                     </ul>
             </div>
@@ -235,7 +241,6 @@ const createEmployee = () => {
     .then (promptAddInt)
     .catch ()   
 }
-
 
 createEmployee()
 
