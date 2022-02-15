@@ -124,7 +124,8 @@ const promptEngineer = () => {
                 <li class="list-group-item"><h6>Name</h6>${answers.Em_name}</li>
                 <li class="list-group-item"><h6>ID</h6>${answers.id}</li>
                 <li class="list-group-item"><h6>Email</h6>${answers.Email}</li>
-                <li class="list-group-item"><h6>Git</h6>${answers.Github}</li>
+                <li class="list-group-item"><h6>Git</h6><a href="github.com/${answers.Github}" target=_blank>${answers.Github}</a>
+                </li>
             </ul>
         </div>
     </div>`
@@ -204,13 +205,13 @@ const createEmployee = () => {
         href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
         rel="stylesheet"
         />
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/style.css" />
         <title>Build Your Team!</title>
     </head>
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
+            <div class="container text-center">
                 <h1 class="display-4">The Team</h1>
-                <p class="lead">Manager + Options: Engineer and/or Intern</p>
+                <p class="lead">Manager + Engineer and / or Intern</p>
             </div>
         </div>
 
