@@ -2,7 +2,7 @@
 
 ![alt text](assets/sample.jpg)
 
-
+## Video Walkthrough
 https://youtu.be/wH3vdVmGd40
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -33,6 +33,8 @@ App output is html.
 From root, go to 'tests' folder and open 'Employee.test.js' (or any .test file)
 
 Open Node.js via integrated terminal. Run npm test to verify functions. 
+
+You can also run npm test directly from the index.js file. 
 
 ### Running 
 From root, run index.js.

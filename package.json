@@ -3,6 +3,9 @@
     "fs": "^0.0.1-security",
     "inquirer": "^8.2.0"
   },
+  "scripts": {
+    "test": "jest --verbose test/*"
+  },
   "devDependencies": {
     "jest": "^27.5.1"
   }
