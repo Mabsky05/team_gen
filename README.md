@@ -52,6 +52,9 @@ grimdango@gmail.com
 
 
 ## Log 
+### 23/02/22
+Added tests to index.js. Included readme link in walkthrough. 
+
 ### 15/02/22
 Final upload, readme added, index.js comments
 
