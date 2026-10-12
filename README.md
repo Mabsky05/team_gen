@@ -48,7 +48,6 @@ An html output will be generated in the root folder.
 
 
 ## Contact
-grimdango@gmail.com
 
 
 ## Log 
